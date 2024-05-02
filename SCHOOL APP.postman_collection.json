@@ -1,0 +1,343 @@
+{
+	"info": {
+		"_postman_id": "4049f195-a349-45cc-8dcc-5a86abb693fa",
+		"name": "SCHOOL APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "23627047"
+	},
+	"item": [
+		{
+			"name": "student",
+			"item": [
+				{
+					"name": "La lista de estudiantes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "Ycg2vewUDOgzB6Gs8nOXaUOQtemOMt56Gh3RPuBcouvxQBnBAINbKcIKOc8uvIE4"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"uuid": "bb7e2d88-9d1e-483a-a6c0-ae7527aaf5b3"
+							}
+						],
+						"url": "http://school-app.test/api/admin/student/lista"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "course",
+			"item": [
+				{
+					"name": "La lista de cursos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "Ycg2vewUDOgzB6Gs8nOXaUOQtemOMt56Gh3RPuBcouvxQBnBAINbKcIKOc8uvIE4"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"uuid": "0f226b16-08ae-4199-a2b2-bd059b561b6f"
+							}
+						],
+						"url": "http://school-app.test/api/admin/course/lista"
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "Ycg2vewUDOgzB6Gs8nOXaUOQtemOMt56Gh3RPuBcouvxQBnBAINbKcIKOc8uvIE4"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"uuid": "d592f8e9-2689-4b55-a328-24c1f1949630"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Matematicas Avanzada 1",
+									"type": "text"
+								},
+								{
+									"key": "date_start",
+									"value": "2024-03-25",
+									"type": "text"
+								},
+								{
+									"key": "date_end",
+									"value": "2024-08-01",
+									"type": "text"
+								},
+								{
+									"key": "schedule",
+									"value": "14:00:00 18:00:00",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Presencial",
+									"type": "text"
+								}
+							]
+						},
+						"url": "http://school-app.test/api/admin/course/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "Ycg2vewUDOgzB6Gs8nOXaUOQtemOMt56Gh3RPuBcouvxQBnBAINbKcIKOc8uvIE4"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"uuid": "5fb5551b-c906-4e74-aee8-525f136a6e2b"
+							}
+						],
+						"url": {
+							"raw": "http://school-app.test/api/admin/course/:id",
+							"protocol": "http",
+							"host": [
+								"school-app",
+								"test"
+							],
+							"path": [
+								"api",
+								"admin",
+								"course",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"uuid": "7a539cc1-b1ad-4215-b22b-7f5c456054c9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "Ycg2vewUDOgzB6Gs8nOXaUOQtemOMt56Gh3RPuBcouvxQBnBAINbKcIKOc8uvIE4"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"uuid": "b280e6fa-0b7e-4bc3-a8ef-483cad486c5d"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Diseño Grafico",
+									"type": "text"
+								},
+								{
+									"key": "date_start",
+									"value": "2024-03-25",
+									"type": "text"
+								},
+								{
+									"key": "date_end",
+									"value": "2024-08-01",
+									"type": "text"
+								},
+								{
+									"key": "schedule",
+									"value": "12:00:00 a 18:00:00",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Presencial",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://school-app.test/api/admin/course/update/:id",
+							"protocol": "http",
+							"host": [
+								"school-app",
+								"test"
+							],
+							"path": [
+								"api",
+								"admin",
+								"course",
+								"update",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"uuid": "8e3a929f-b75f-47e4-b281-8f44aa2f6988"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "Ycg2vewUDOgzB6Gs8nOXaUOQtemOMt56Gh3RPuBcouvxQBnBAINbKcIKOc8uvIE4"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://school-app.test/api/admin/course/:id",
+							"protocol": "http",
+							"host": [
+								"school-app",
+								"test"
+							],
+							"path": [
+								"api",
+								"admin",
+								"course",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4",
+									"uuid": "35ade81e-e88b-483b-91a8-f28eb6196579"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"uuid": "41c023ea-26d9-40ab-af91-aab3db30ea2f"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "leovillaran@hotmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Lgoptimusg3$",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://school-app.test/api/admin/login"
+			},
+			"response": []
+		},
+		{
+			"name": "cerrar sesion",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "QHpwUtpls7NIJIsxUyxzuhPxhYexKN5EbOYw6EWLKINuaM1zOz32XFNA2319gd5WdEldRFTpuLqsseOqxmeIs7aMdISp0Lsbt9RkGzBZVmjeYpCVdFIxtPI89qfyOjIj"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"uuid": "934d1bf8-d1d6-479e-a8e4-9521bb3761ac"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "leovillaran@hotmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Lgoptimusg3$",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://school-app.test/api/admin/logout"
+			},
+			"response": []
+		},
+		{
+			"name": "tablero",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "Ycg2vewUDOgzB6Gs8nOXaUOQtemOMt56Gh3RPuBcouvxQBnBAINbKcIKOc8uvIE4"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://school-app.test/api/admin/dashboard"
+			},
+			"response": []
+		}
+	]
+}

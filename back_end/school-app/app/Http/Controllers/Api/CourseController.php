@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 use Log;
-use function PHPUnit\Framework\isEmpty;
 
 class CourseController extends ApiController
 {
@@ -108,10 +107,15 @@ class CourseController extends ApiController
      *          description="Successful operation",
      *       ),
      *      @OA\Response(
-     *          response=404,
-     *          description="Forbidden"
+     *          response=400,
+     *          description="Bad Request"
      *      )
-     *     )
+     *     ),
+     *    @OA\Response(
+     *           response=500,
+     *           description="Forbidden"
+     *       )
+     *      )
      */
 
     public function register(Request $request){
@@ -258,15 +262,75 @@ class CourseController extends ApiController
 
     public function updated($id, Request $request){
         try{
+            $course = Course::with('studentAndCourse.student')->find($id);
+            if(is_null($course)){
+                return $this->apiResponse(null, null,'No existe cursos', 400);
+            }
 
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:50|regex:/^[a-zA-Z0-9 ñ]+$/u',
+                'date_start' => 'required|date|date_format:Y-m-d',
+                'date_end' => 'required|date|date_format:Y-m-d|after:date_start',
+                'schedule' => 'required|regex:/^[0-9\: a]+$/u',
+                'type'=>'required'
+            ]);
+            if($validator->fails()){
+                return $this->apiResponse(null, null,$validator->errors()->toJson(), 400);
+            }
+
+            $course->name = $request->name;
+            $course->date_start =$request->date_start;
+            $course->date_end= $request->date_end;
+            $course->schedule = $request->schedule;
+            $course->type=$request->type;
+
+            $course->save();
+
+            return $this->apiResponse(null,'UPDATED',null, 200);
         }catch(Exception $ex){
             Log::error($ex);
             return $this->apiResponse(null, null, 'Error interno', 500);
         }
     }
 
+    /**
+     * @OA\Delete(
+     *      path="/admin/course/{id}",
+     *      operationId="getCourseDeleteId",
+     *      tags={"course"},
+     *      summary="Eliminar",
+     *      description="Eliminar cursos",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="el id del curso",
+     *          required=true,
+     *          in="path",
+     *      @OA\Schema(
+     *          type="int"
+     *         )
+     *       ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="No Content"
+     *      )
+     *     )
+     */
     public function delete($id){
         try{
+            $course = Course::with('studentAndCourse.student')->find($id);
+            if(is_null($course)){
+                return $this->apiResponse(null, null,'No existe cursos', 400);
+            }
+            $course->delete();
+            return $this->apiResponse(null,'Solicitud satisfactoria',null,200);
 
         }catch(Exception $ex){
             Log::error($ex);

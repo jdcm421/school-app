@@ -97,8 +97,8 @@
                     "201": {
                         "description": "Successful operation"
                     },
-                    "404": {
-                        "description": "Forbidden"
+                    "400": {
+                        "description": "Bad Request"
                     }
                 }
             }
@@ -111,6 +111,36 @@
                 "summary": "obtener",
                 "description": "Obtener cursos",
                 "operationId": "getCourseId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del curso",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "course"
+                ],
+                "summary": "Eliminar",
+                "description": "Eliminar cursos",
+                "operationId": "getCourseDeleteId",
                 "parameters": [
                     {
                         "name": "id",
@@ -205,6 +235,32 @@
                 }
             }
         },
+        "/admin/dashboard": {
+            "get": {
+                "tags": [
+                    "dashboard"
+                ],
+                "summary": "listar",
+                "description": "Listar Tablero",
+                "operationId": "getDashboard",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "500": {
+                        "description": "Internal Server"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/admin/student": {
             "get": {
                 "tags": [
@@ -220,8 +276,8 @@
                     "401": {
                         "description": "Unauthenticated"
                     },
-                    "404": {
-                        "description": "Not Found"
+                    "500": {
+                        "description": "Internal Server"
                     }
                 },
                 "security": [
@@ -229,6 +285,208 @@
                         "bearerAuth": []
                     }
                 ]
+            }
+        },
+        "/admin/student/register": {
+            "post": {
+                "tags": [
+                    "student"
+                ],
+                "summary": "Register Student",
+                "description": "Registrar al Estudiante",
+                "operationId": "getStudentRegister",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nombre",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "date_start",
+                        "in": "query",
+                        "description": "fecha de inicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "date_end",
+                        "in": "query",
+                        "description": "fecha de fin",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "schedule",
+                        "in": "query",
+                        "description": "horario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "tipo de modalidad",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/admin/student/{id}": {
+            "get": {
+                "tags": [
+                    "student"
+                ],
+                "summary": "obtener",
+                "description": "Obtener Estudiante",
+                "operationId": "getStudentId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del Estudiante",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "student"
+                ],
+                "summary": "Eliminar",
+                "description": "Eliminar Estudiante",
+                "operationId": "getStudentDeleteId",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del Estudiante",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            }
+        },
+        "/admin/student/updated/{id}": {
+            "post": {
+                "tags": [
+                    "student"
+                ],
+                "summary": "updated student",
+                "description": "Actualizar al Estudiante",
+                "operationId": "getStudentUpdated",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Nombre",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "date_start",
+                        "in": "query",
+                        "description": "fecha de inicio",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "date_end",
+                        "in": "query",
+                        "description": "fecha de fin",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "schedule",
+                        "in": "query",
+                        "description": "horario",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "tipo de modalidad",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Iinternal Serve"
+                    }
+                }
             }
         },
         "/login": {
@@ -302,6 +560,11 @@
         }
     },
     "components": {
+        "responses": {
+            "500": {
+                "description": "Forbidden"
+            }
+        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",
