@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
-import { LoginRequest } from '../request/LoginRequest';
 import { ResponseAuth } from '../response/ResponseAuth';
 import { Observable } from 'rxjs';
 
@@ -14,11 +13,15 @@ export class LoginService {
   constructor(private _http: HttpClient) {
   }
 
-  login = (credential: LoginRequest): Observable<ResponseAuth> => {
-    let formData: FormData = new FormData();
-    formData.append('email',credential.email);
-    formData.append('password',credential.password);
-    return this._http.post<ResponseAuth>(`${this.baseUrl}/login`, formData, {
+  login = (emails?:string , passwords?:string): Observable<ResponseAuth> => {
+    console.log(emails);
+    console.log(passwords);
+    const form = new FormData();
+    form.append("email",emails);
+    form.append('password',passwords);
+    return this._http.post<ResponseAuth>(`${this.baseUrl}/admin/login`, {
+      form
+    }, {
       headers: {
         "Content-Type": "application/json"
       }

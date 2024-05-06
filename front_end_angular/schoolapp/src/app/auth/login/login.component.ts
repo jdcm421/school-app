@@ -10,17 +10,17 @@ import { LoginService } from 'src/app/core/service/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  request: LoginRequest;
+  requestLogin : LoginRequest;
 
   constructor(public authService : LoginService){}
 
   ngOnInit(){
-    this.request={};
+    this.requestLogin={};
   }
 
   save(){
-    console.log(this.request);
-    this.authService.login(this.request).subscribe(response => {
+    console.log(this.requestLogin);
+    this.authService.login(this.requestLogin.email , this.requestLogin.password).subscribe(response => {
       console.log(response);
     });
   }

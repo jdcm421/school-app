@@ -1,11 +1,10 @@
 <main class="form-signin">
-  <form>
     <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-    <label for="inputEmail" class="visually-hidden">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" [(ngModel)]="request.email" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="visually-hidden">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" [(ngModel)]="request.password" required>
+    <label for="email" class="visually-hidden">Email address</label>
+    <input type="email" id="email" name="email" class="form-control" [(ngModel)]="requestLogin.email" placeholder="Email address" required autofocus>
+    <label for="password" class="visually-hidden">Password</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password" [(ngModel)]="requestLogin.password" required>
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember me
@@ -13,5 +12,4 @@
     </div>
     <button class="w-100 btn btn-lg btn-primary" (click)="save()">Sign in</button>
     <p class="mt-5 mb-3 text-muted"></p>
-  </form>
 </main>
