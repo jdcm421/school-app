@@ -1,0 +1,30 @@
+@import "_variables";
+.c-pointer {
+    cursor: pointer;
+}
+.fw-bold {
+    font-weight: 600;
+}
+.bg-white {
+    background: white !important;
+}
+.bg-gray-1 {
+    background: #373a36 !important;
+}
+.bg-gray {
+    background: #d9d9d9 !important;
+}
+small {
+    font-size: 12px;
+}
+//End buttons
+
+// texts
+
+.sub-title {
+    font-family: 'museo_sans700';
+}
+
+.heigth-not{
+  height: 100% !important;
+}

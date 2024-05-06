@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Inter-Regular";
+  src: url('~src/assets/fonts/Inter/static/Inter-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-display: swap;
+}
+
+.font-inter-regular {
+  font-family: 'Inter-Regular', sans-serif;
+}
+
+
+@font-face {
+  font-family: "Inter-Bold";
+  src: url('~src/assets/fonts/Inter/static/Inter-Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-display: swap;
+}
+
+.font-inter-bold {
+  font-family: 'Inter-Bold', sans-serif;
+}

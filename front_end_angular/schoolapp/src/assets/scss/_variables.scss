@@ -1,0 +1,43 @@
+// primary
+$C2945C:#004C97;
+$C299C: #00A3E0;
+
+//Secondary
+$gray2C: #D0D0CE;
+$blackc: #2D2926;
+$C431C:  #5B6770;
+$C1225C: #FFC845;
+
+//sises
+$white: white;
+
+//Bootstrap
+$primary: $C2945C;
+$info: $C299C;
+
+$alert-bg-scale: 0%;
+$alert-color-scale:0%;
+
+$lert-text-color: $white;
+$bg-body: $gray2C;
+$color-text-btn-outline: #5B6770;;
+
+//sidebar
+$color-text-sidebar: $C431C;
+$bg-active-sidebar: #004c970f;
+$color-text-active-sidebar: #004c970f;
+
+/* General */
+$scale:14px;                    /* main font size */ 
+$borderRadius:0;             /* border radius of layout element e.g. card, sidebar */ 
+$transitionDuration:.2s;        /* transition duration of layout elements e.g. sidebar, overlay menus */ 
+
+
+
+//Cards
+$card-cap-bg: $primary;
+$card-cap-color: $white;
+$btn-text-color: $white;
+
+
+$label-font-size: 13px;

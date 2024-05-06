@@ -1,26 +1,38 @@
+import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { StudentComponent } from './student/student.component';
-import { LoginComponent } from './login/login.component';
-import { CourseComponent } from './course/course.component';
+import { AuthModule } from './auth/auth.module';
+import { AuthRoutingModule } from './auth/auth.routing';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    StudentComponent,
-    LoginComponent,
-    CourseComponent
   ],
   imports: [
+    CommonModule,
+    FormsModule,
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AuthRoutingModule,
+    PagesModule,
+    AuthModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true,
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

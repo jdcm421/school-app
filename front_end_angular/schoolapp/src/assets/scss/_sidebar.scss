@@ -1,0 +1,21 @@
+.sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 400px;
+}
+
+.logo {
+  margin: 3rem 0 3rem 0;
+}
+
+.logo img {
+  width: 125px;
+}
+
+@media screen and (min-width: 576px) { 
+  .p-sidebar-mask {
+      display: none;
+  }
+}

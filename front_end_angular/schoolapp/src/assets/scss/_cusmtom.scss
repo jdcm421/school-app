@@ -1,0 +1,75 @@
+@import "_variables";
+.img-rounded img {
+    border-radius: 50%;
+}
+
+input, .p-dropdown {
+    width: 100%;
+}
+
+
+.p-button.p-button-secondary {
+    background: #7b7b7b;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.p-dialog .p-dialog-header {
+    background: $primary;
+    color: #fff;
+}
+
+.p-dialog-header-close-icon {
+    color: #fff;
+}
+
+// labels
+
+label {
+    font-size: $label-font-size;
+}
+
+// buttons
+.btn-rounded {
+    padding: 0.7rem;
+    border-radius: 2rem;
+    min-width: 10rem;
+}
+
+.btn-bg-white {
+    background:$white;
+}
+
+.btn {
+    color: $btn-text-color !important;
+}
+
+.btn-outline-info, .btn-outline-secondary {
+    color: $color-text-btn-outline !important;
+}
+.btn-outline-info:hover, .btn-outline-secondary:hover {
+    color: white !important;
+}
+
+.p-splitbutton.p-button-sm > .p-button {
+    padding: 0.5rem;
+}
+
+.alert-info {
+    color: $lert-text-color !important;
+}
+
+.p-component {
+    font-family: 'museo_sans500';
+    font-size: 14px;
+}
+
+.p-progressbar {
+    background: transparent;
+}
+.p-progressbar .p-progressbar-value {
+    background: $info;
+}

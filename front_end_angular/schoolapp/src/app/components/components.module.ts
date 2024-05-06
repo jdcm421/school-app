@@ -13,7 +13,7 @@ const components = [
   declarations: [components,
 
   ],
-  export:[
+  exports:[
     components
   ]
 })
