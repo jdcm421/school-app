@@ -40,13 +40,24 @@ class DashboardController extends ApiController
 
     public function index(){
         try {
-            $topCourse = Course::with('studentAndCourse.student')->get();
-            $topStudent = Student::with('courses.course')->get();
-            $course = Course::with('studentAndCourse.student')->get();
+            $topCourse = Course::whereBetween('created_at',[now()->subMonths(6),now()])->withCount('studentAndCourse')
+                ->having('student_and_course_count', '>=', 3)
+                ->orderBy('student_and_course_count','desc')
+                ->limit(3)
+                ->get();
+            $topStudent = Student::withCount('courses')
+                ->having('courses_count', '>=', 2)
+                ->orderBy('courses_count', 'desc')
+                ->limit(3)->get();
+            $course = Course::all();
+            $student = Student::all();
+            $oneCourse = Course::withCount('studentAndCourse')->having('student_and_course_count','=',1)->orderBy('id','desc')->get();
             return $this->apiResponse([
                 'topCourse' => $topCourse,
                 'topStudent' => $topStudent,
-                'course' => $course
+                'student' => $student,
+                'course' => $course,
+                'oneCourse' => $oneCourse
             ],'OK',null,200);
         }catch(Exception $ex){
             Log::error($ex);

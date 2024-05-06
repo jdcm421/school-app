@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
+use App\Models\StudentAndCourse;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Validator;
@@ -329,6 +330,68 @@ class StudentController extends ApiController
 
             return $this->apiResponse(null, null, 'Estudiante eliminado', 200);
 
+        }catch(Exception $ex){
+            Log::error($ex);
+            return $this->apiResponse(null, null, 'Error interno', 500);
+        }
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/admin/student/tuition",
+     *      operationId="getStudentTuition",
+     *      tags={"student"},
+     *      summary="tuition Student",
+     *      description="Matricula al Estudiante",
+     *     @OA\Parameter(
+     *         name="student_id",
+     *         description="id de estudiante",
+     *         required=true,
+     *         in="query",
+     *     @OA\Schema(
+     *         type="int"
+     *        )
+     *      ),
+     *     @OA\Parameter(
+     *         name="course_id",
+     *         description="id del Curso",
+     *         required=true,
+     *         in="query",
+     *     @OA\Schema(
+     *         type="int"
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *     @OA\Response(
+     *            response=500,
+     *            description="Forbidden"
+     *        )
+     *      )
+     */
+    public function tuition(Request $request){
+        try{
+            $validator = Validator::make($request->all(), [
+                'student_id' => 'required|integer|exists:students,id',
+                'course_id' => 'required|integer|exists:courses,id',
+            ]);
+
+            if($validator->fails()){
+                return $this->apiResponse(null,null, $validator->errors()->toJson(), 400);
+            }
+
+            $tuition = new StudentAndCourse([
+                'student_id' => $request->get('student_id'),
+                'course_id' => $request->get('course_id'),
+            ]);
+            $tuition->save();
+            return $this->apiResponse(null, 'OK', 'Solicitud Satisfactoria', 201);
         }catch(Exception $ex){
             Log::error($ex);
             return $this->apiResponse(null, null, 'Error interno', 500);

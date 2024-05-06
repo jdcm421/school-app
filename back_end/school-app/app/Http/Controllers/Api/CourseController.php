@@ -18,7 +18,7 @@ class CourseController extends ApiController
 
      /**
      * @OA\Get(
-     *      path="/admin/course",
+     *      path="/admin/course/listar",
      *      operationId="getcourse",
      *      tags={"course"},
      *      summary="listar",
@@ -193,11 +193,20 @@ class CourseController extends ApiController
 
     /**
      * @OA\Post(
-     *      path="/admin/course/updated",
+     *      path="/admin/course/update/{id}",
      *      operationId="getCourseUpdated",
      *      tags={"course"},
      *      summary="Actualizar course",
      *      description="Actualizar al Cursos",
+     *      @OA\Parameter(
+     *           name="id",
+     *           description="el id del curso",
+     *           required=true,
+     *           in="path",
+     *       @OA\Schema(
+     *           type="int"
+     *          )
+     *        ),
      *     @OA\Parameter(
      *         name="name",
      *         description="Nombre",

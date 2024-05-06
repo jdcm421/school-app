@@ -10,7 +10,7 @@
         }
     ],
     "paths": {
-        "/admin/course": {
+        "/admin/course/listar": {
             "get": {
                 "tags": [
                     "course"
@@ -165,7 +165,7 @@
                 }
             }
         },
-        "/admin/course/updated": {
+        "/admin/course/update/{id}": {
             "post": {
                 "tags": [
                     "course"
@@ -174,6 +174,15 @@
                 "description": "Actualizar al Cursos",
                 "operationId": "getCourseUpdated",
                 "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del curso",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
                     {
                         "name": "name",
                         "in": "query",
@@ -306,38 +315,36 @@
                         }
                     },
                     {
-                        "name": "date_start",
+                        "name": "last_name",
                         "in": "query",
-                        "description": "fecha de inicio",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        }
-                    },
-                    {
-                        "name": "date_end",
-                        "in": "query",
-                        "description": "fecha de fin",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        }
-                    },
-                    {
-                        "name": "schedule",
-                        "in": "query",
-                        "description": "horario",
+                        "description": "Apellido",
                         "required": true,
                         "schema": {
                             "type": "string"
                         }
                     },
                     {
-                        "name": "type",
+                        "name": "age",
                         "in": "query",
-                        "description": "tipo de modalidad",
+                        "description": "Edad",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "identification_card",
+                        "in": "query",
+                        "description": "carnet de estudiante",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "correo electronico",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -413,7 +420,7 @@
                     "401": {
                         "description": "Unauthenticated"
                     },
-                    "204": {
+                    "400": {
                         "description": "No Content"
                     }
                 }
@@ -438,38 +445,36 @@
                         }
                     },
                     {
-                        "name": "date_start",
+                        "name": "last_name",
                         "in": "query",
-                        "description": "fecha de inicio",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        }
-                    },
-                    {
-                        "name": "date_end",
-                        "in": "query",
-                        "description": "fecha de fin",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "format": "date"
-                        }
-                    },
-                    {
-                        "name": "schedule",
-                        "in": "query",
-                        "description": "horario",
+                        "description": "Apellido",
                         "required": true,
                         "schema": {
                             "type": "string"
                         }
                     },
                     {
-                        "name": "type",
+                        "name": "age",
                         "in": "query",
-                        "description": "tipo de modalidad",
+                        "description": "fecha de fin",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "identification_card",
+                        "in": "query",
+                        "description": "carnet estudiante",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "correo electronico",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -485,6 +490,47 @@
                     },
                     "500": {
                         "description": "Iinternal Serve"
+                    }
+                }
+            }
+        },
+        "/admin/student/tuition": {
+            "post": {
+                "tags": [
+                    "student"
+                ],
+                "summary": "tuition Student",
+                "description": "Matricula al Estudiante",
+                "operationId": "getStudentTuition",
+                "parameters": [
+                    {
+                        "name": "student_id",
+                        "in": "query",
+                        "description": "id de estudiante",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    },
+                    {
+                        "name": "course_id",
+                        "in": "query",
+                        "description": "id del Curso",
+                        "required": true,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Forbidden"
                     }
                 }
             }

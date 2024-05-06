@@ -20,6 +20,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'student'] , function () {
         Route::get('/lista',[App\Http\Controllers\Api\StudentController::class,'index']);
         Route::post('/register',[App\Http\Controllers\Api\StudentController::class,'register']);
+        Route::post('/tuition',[App\Http\Controllers\Api\StudentController::class,'tuition']);
         Route::get('/{id}',[App\Http\Controllers\Api\StudentController::class,'find']);
         Route::post('/update/{id}',[App\Http\Controllers\Api\StudentController::class,'updated']);
         Route::delete('/{id}',[App\Http\Controllers\Api\StudentController::class,'delete']);
