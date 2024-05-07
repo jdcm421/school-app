@@ -12,6 +12,7 @@ class Role extends Model
     public const TEACHER="Teacher";
 
     protected $fillable = ['type'];
+    protected $hidden = ['created_at','updated_at'];
 
     public function user(): hasMany {
         return $this->hasMany(User::class);

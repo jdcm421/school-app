@@ -11,7 +11,7 @@ class Student extends Model
     use SoftDeletes;
 
     protected $fillable = ['id','name','last_name','age','identification_card','email'];
-   protected $appends = ['courses_count'];
+    protected $appends = ['courses_count'];
     protected $hidden = ['created_at','updated_at','deleted_at'];
     protected $dates = ['created_at','updated_at','deleted_at'];
 

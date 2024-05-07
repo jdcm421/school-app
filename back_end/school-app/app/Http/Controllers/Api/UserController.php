@@ -65,12 +65,12 @@ class UserController extends ApiController
             ]);
 
             if ($validator->fails()) {
-                return $this->apiResponse(null, 'KO', $validator->errors()->toJson(), 400);
+                return $this->apiResponse(null, null, $validator->errors()->toJson(), 400);
             }
 
             $credentials = request(['email', 'password']);
             if (!Auth::guard()->attempt($credentials)) {
-                return $this->apiResponse(null, 'KO', 'Credenciales incorrectas', 401);
+                return $this->apiResponse(null, null, 'Credenciales incorrectas', 401);
             }
 
             $user = Auth::user();

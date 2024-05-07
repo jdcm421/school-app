@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/core/request/LoginRequest';
 import { ResponseAuth } from 'src/app/core/response/ResponseAuth';
 import { LoginService } from 'src/app/core/service/login.service';
@@ -12,7 +13,9 @@ export class LoginComponent implements OnInit {
 
   requestLogin : LoginRequest;
 
-  constructor(public authService : LoginService){}
+  constructor(public authService : LoginService,
+    private router: Router
+  ){}
 
   ngOnInit(){
     this.requestLogin={};
@@ -20,8 +23,13 @@ export class LoginComponent implements OnInit {
 
   save(){
     console.log(this.requestLogin);
-    this.authService.login(this.requestLogin.email , this.requestLogin.password).subscribe(response => {
+    this.authService.login(this.requestLogin).subscribe(response => {
       console.log(response);
+      if(response.message == 'OK'){
+        this.router.navigateByUrl('home')
+      }
+    }, (Error : any) => {
+      console.error(Error);
     });
   }
 }

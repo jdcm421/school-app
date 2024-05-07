@@ -8,13 +8,15 @@ import { CourseComponent } from './course/course.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { StudentComponent } from './student/student.component';
+import { MatriculaComponent } from './matricula/matricula.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     CourseComponent,
     PagesComponent,
-    StudentComponent
+    StudentComponent,
+    MatriculaComponent,
   ],
   imports: [
     CommonModule,

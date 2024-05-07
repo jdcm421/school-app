@@ -2,7 +2,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { ResponseAuth } from '../response/ResponseAuth';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { LoginRequest } from '../request/LoginRequest';
+import { ResponseSchool } from '../response/ResponseSchool';
 
 @Injectable({
   providedIn: 'root',
@@ -13,18 +15,51 @@ export class LoginService {
   constructor(private _http: HttpClient) {
   }
 
-  login = (emails?:string , passwords?:string): Observable<ResponseAuth> => {
-    console.log(emails);
-    console.log(passwords);
-    const form = new FormData();
-    form.append("email",emails);
-    form.append('password',passwords);
-    return this._http.post<ResponseAuth>(`${this.baseUrl}/admin/login`, {
-      form
-    }, {
+  login = (credential : LoginRequest): Observable<ResponseAuth> => {
+    return this._http.post<ResponseAuth>(`${this.baseUrl}/admin/login`, credential , {
       headers: {
         "Content-Type": "application/json"
       }
-    }).pipe();
+    }).pipe(tap(this.saveToken.bind(this)));
+  }
+
+  logout = (): Observable<ResponseSchool> => {
+    return this._http
+      .get<ResponseSchool>(`${this.baseUrl}/auth/cerrar-sesion`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + this.getToken(),
+        },
+      })
+      .pipe(tap(this.deleteToken.bind(this)));
+  };
+
+  saveToken = (value : ResponseAuth): void => {
+    localStorage.setItem('token',value.data?.api_token || "");
+    localStorage.setItem('rol',value.data?.roles?.type||"");
+    localStorage.setItem('user',value.data?.name + ' '+value.data?.last_name);
+  }
+
+  deleteToken = (value: ResponseSchool): void => {
+    if (value.message == 'OK') {
+      localStorage.removeItem('rol');
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+    }
+  };
+
+  getToken() {
+    if (localStorage.getItem('token') !== null) {
+      return localStorage.getItem('token');
+    } else {
+      return null;
+    }
+  }
+
+  isAutenticated = () : boolean => {
+    if(localStorage.getItem('token') !== null){
+      return true;
+    }
+    return false;
   }
 }

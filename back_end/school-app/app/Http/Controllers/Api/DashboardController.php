@@ -51,12 +51,12 @@ class DashboardController extends ApiController
                 ->limit(3)->get();
             $course = Course::all();
             $student = Student::all();
-            $oneCourse = Course::withCount('studentAndCourse')->having('student_and_course_count','=',1)->orderBy('id','desc')->get();
+            $oneCourse = Course::withCount('studentAndCourse')->having('student_and_course_count','>=',1)->orderBy('id','desc')->get();
             return $this->apiResponse([
                 'topCourse' => $topCourse,
                 'topStudent' => $topStudent,
-                'student' => $student,
-                'course' => $course,
+                'student' => $student->count(),
+                'course' => $course->count(),
                 'oneCourse' => $oneCourse
             ],'OK',null,200);
         }catch(Exception $ex){
