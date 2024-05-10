@@ -22,7 +22,7 @@ class UserController extends ApiController
 
     /**
      * @OA\Post(
-     *      path="/login",
+     *      path="/admin/login",
      *      operationId="getClient",
      *      tags={"admin"},
      *      summary="login client",

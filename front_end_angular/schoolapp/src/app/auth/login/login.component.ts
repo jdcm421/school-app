@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/core/request/LoginRequest';
-import { ResponseAuth } from 'src/app/core/response/ResponseAuth';
 import { LoginService } from 'src/app/core/service/login.service';
 
 @Component({
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.requestLogin).subscribe(response => {
       console.log(response);
       if(response.message == 'OK'){
-        this.router.navigateByUrl('home')
+        this.router.navigate(['home'])
       }
     }, (Error : any) => {
       console.error(Error);

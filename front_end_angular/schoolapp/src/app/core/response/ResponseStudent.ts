@@ -1,4 +1,5 @@
-export interface ResponseStudent {
+import { ResponseSchool } from './ResponseSchool';
+export interface ResponseStudent extends ResponseSchool {
   data?:Student[];
 }
 
@@ -6,9 +7,8 @@ export interface Student {
   id?:                  number;
   name?:                string;
   last_name?:           string;
-  identification_card?: string;
   age?:                 number;
+  identification_card?: string;
   email?:               string;
-  student_and_course_count?: number;
-  students_count?:           number;
+  courses_count?:       number;
 }

@@ -3,11 +3,12 @@ export interface ResponseCourse {
 }
 
 export interface Course {
-  id?: number;
-  name?: string;
-  schedule?: string;
-  date_star?: string;
-  date_end?: string;
-  type?: string;
-  courses_count?: number;
+  id?:                       number;
+  name?:                     string;
+  date_start?:               Date;
+  date_end?:                 Date;
+  schedule?:                 string;
+  type?:                     string;
+  student_and_course_count?: number;
+  students_count?:           number;
 }

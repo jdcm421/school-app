@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxHttpLoaderModule } from 'ngx-http-loader';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { AuthRoutingModule } from './auth/auth.routing';
@@ -15,13 +15,13 @@ import { PagesModule } from './pages/pages.module';
     AppComponent,
   ],
   imports: [
-    CommonModule,
     FormsModule,
     BrowserModule,
     HttpClientModule,
     AuthRoutingModule,
     PagesModule,
-    AuthModule
+    AuthModule,
+    NgxHttpLoaderModule.forRoot(),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

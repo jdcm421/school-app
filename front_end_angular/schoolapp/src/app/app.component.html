@@ -1,1 +1,8 @@
 <router-outlet></router-outlet>
+<ngx-http-loader
+    [backdropBackgroundColor]="'#f59e0b00'"
+    [custom]="true"
+    [customLoader]="loaderTemplate">
+    <ng-template #loaderTemplate>
+    </ng-template>
+</ngx-http-loader>

@@ -7,6 +7,7 @@ use App\Models\StudentAndCourse;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Log;
 use App\Models\Student;
 
@@ -84,15 +85,6 @@ class StudentController extends ApiController
      *         )
      *      ),
      *      @OA\Parameter(
-     *         name="identification_card",
-     *         description="carnet de estudiante",
-     *         required=true,
-     *         in="query",
-     *      @OA\Schema(
-     *         type="string"
-     *         )
-     *      ),
-     *      @OA\Parameter(
      *          name="email",
      *          description="correo electronico",
      *          required=true,
@@ -122,7 +114,6 @@ class StudentController extends ApiController
                 'name' => 'required|string|max:100',
                 'last_name' => 'required|string|max:100',
                 'age' => 'required|integer|min:18|max:80',
-                'identification_card'=>'required|string|max:11',
                 'email' => 'required|email|unique:students',
             ]);
 
@@ -135,7 +126,7 @@ class StudentController extends ApiController
                 'name' => $request->get('name'),
                 'last_name' => $request->get('last_name'),
                 'age' => $request->get('age'),
-                'identification_card' => $request->get('identification_card'),
+                'identification_card' => Str::random(11),
                 'email' => $request->get('email')
             ]);
 
@@ -226,15 +217,6 @@ class StudentController extends ApiController
      *         )
      *      ),
      *      @OA\Parameter(
-     *         name="identification_card",
-     *         description="carnet estudiante",
-     *         required=true,
-     *         in="query",
-     *      @OA\Schema(
-     *         type="string"
-     *         )
-     *      ),
-     *      @OA\Parameter(
      *          name="email",
      *          description="correo electronico",
      *          required=true,
@@ -268,7 +250,6 @@ class StudentController extends ApiController
                 'name' => 'required|string|max:100',
                 'last_name' => 'required|string|max:100',
                 'age' => 'required|integer|min:18|max:80',
-                'identification_card'=>'required|string|max:11'
             ]);
             if($validator->fails()){
                 return $this->apiResponse(null,null, $validator->errors()->toJson(), 400);
@@ -279,7 +260,6 @@ class StudentController extends ApiController
             $student->name = $request->get('name');
             $student->last_name = $request->get('last_name');
             $student->age = $request->get('age');
-            $student->identification_card = $request->get('identification_card');
             $student->email = $request->get('email');
             $student->save();
 

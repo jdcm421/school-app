@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 /**
  * @OA\Info(title="API SCHOOL", version="1.0")
- * @OA\Server(url="http://school-app.test/api")
+ * @OA\Server(url="http://127.0.0.1:8000/api")
  * @OA\Schemes(format="http")
  * @OA\SecurityScheme(
  *      securityScheme="bearerAuth",
